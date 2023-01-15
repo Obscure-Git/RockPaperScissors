@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #292D3E;
+    color: #FFFFFF;
+    font-family: 'Mouse Memoirs', sans-serif;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.score-board {
+    display: flex;
+    background-color: #212432;
+
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #171923;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 25px;
+
+    transition: .2s ease-in-out;
+}
+
+span {
+    font-size: 30px;
+    margin: 0 15px 0;
+}
+
+.result {
+    display: flex;
+
+    margin-top: 5%;
+
+    align-items: center;
+    justify-content: center;
+}
+
+#result {
+    transition: .3s ease-in-out;
+    font-size: 35px;
+}
+
+.choice-picked {
+    display: flex;
+
+    margin-top: 1%;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.choices {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    transition: .5s ease;
+}
+
+.choice {
+    display: flex;
+    padding: 15px;
+    cursor: pointer;
+    margin: 30px;
+    border: 3px solid #0993EF;
+    border-radius: 50%;
+
+    transition: .3s ease;
+}
+
+.choice:hover {
+    background: radial-gradient(#14C2F9, #0A98F0);
+    border: 5px solid #0993EF;
+    box-shadow: 1px 4px 70px 7px #10639D;
+}
+
+#choice-picked {
+    font-size: 23px;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.footer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #171923;
+    width: 100vw;
+    height: 40px;
+
+    font-size: 21px;
+}
+
+.footer footer a {
+    text-decoration: none;
+    color: #0993EF;
+
+    transition: .3s ease;
+}
+
+.footer footer a:hover {
+    font-size: 30px;
+    color: #0993EF;
+}
+
+@media (max-width: 700px) {
+    img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .choices {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        cursor: auto;
+
+        transform: translate(-50%, -45%);
+    }
+
+    .choice {
+        display: flex;
+        padding: 5px;
+        margin: 10px;
+    }
+
+    #result {
+        font-size: 30px;
+    }
+
+    #choice-picked {
+        margin-top: 5px;
+        font-size: 25px;
+    }
+
+    .score-board {
+        height: 60px;
+    }
+}
+
+@media (max-height: 560px) {
+    img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .choices {
+        display: flex;
+        flex-direction: row;
+        cursor: auto;
+
+        transform: translate(-50%, -45%);
+    }
+
+    .choice {
+        display: flex;
+        padding: 5px;
+        margin: 10px;
+    }
+
+    #result {
+        font-size: 20px;
+    }
+
+    #choice-picked {
+        margin-top: 5px;
+        font-size: 15px;
+    }
+
+    .score-board {
+        height: 50px;
+    }
+
+    .badge {
+        font-size: 15px;
+    }
+}
