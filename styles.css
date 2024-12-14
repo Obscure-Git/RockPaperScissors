@@ -1,211 +1,271 @@
-@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
+@font-face {
+    font-family: 'NeueMachina';
+    src: url('../assets/fonts/NeueMachina/NeueMachina-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMachina';
+    src: url('../assets/fonts/NeueMachina/NeueMachina-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMachina';
+    src: url('../assets/fonts/NeueMachina/NeueMachina-Ultrabold.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --bg-primary: #000;
+    --text-primary: #fff;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 body {
-    background-color: #292D3E;
-    color: #FFFFFF;
-    font-family: 'Mouse Memoirs', sans-serif;
+    font-family: 'NeueMachina', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-img {
-    width: 100px;
-    height: 100px;
-}
-
-.score-board {
+.game-container {
     display: flex;
-    background-color: #212432;
+    height: 100vh;
+    background-color: var(--bg-primary);
+}
 
-    height: 80px;
-    align-items: center;
+.scoreboard {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-right: 1px solid var(--border-color);
+    gap: 1rem;
+}
+
+.player-section, .computer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    padding: 1rem;
+}
+
+.scoreboard-divider {
+    width: 80%;
+    height: 1px;
+    background-color: var(--border-color);
 }
 
 .badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #171923;
-    padding: 10px;
-    border-radius: 4px;
-    font-size: 25px;
-
-    transition: .2s ease-in-out;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
 }
 
-span {
-    font-size: 30px;
-    margin: 0 15px 0;
+.score {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: inline-block;
+    position: relative;
+    transition: all 0.3s ease;
+    margin: 0 1rem;
+}
+
+.score.animate {
+    animation: 
+        scoreSlideIn .5s ease;
+}
+
+.score.user-win {
+    color: #00ff00; /* Bright green for user win */
+}
+
+.score.computer-win {
+    color: #ff0000; /* Bright red for computer win */
+}
+
+@keyframes scoreSlideIn {
+    0% {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .result {
+    text-align: center;
+    margin-top: 2rem;
+    min-height: 100px;
     display: flex;
-
-    margin-top: 5%;
-
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 #result {
-    transition: .3s ease-in-out;
-    font-size: 35px;
-}
-
-.choice-picked {
-    display: flex;
-
-    margin-top: 1%;
-
-    align-items: center;
-    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+    max-width: 600px;
+    transition: 0.3s linear;
 }
 
 .choices {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 400px;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    transition: .5s ease;
+    align-items: center;
+    gap: 2rem;
 }
 
 .choice {
     display: flex;
-    padding: 15px;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--text-primary);
+    border-radius: 0.7rem;
     cursor: pointer;
-    margin: 30px;
-    border: 3px solid #0993EF;
-    border-radius: 50%;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background-color: transparent;
+    color: var(--text-primary);
+    position: relative; /* For positioning the key indicator */
+}
 
-    transition: .3s ease;
+.key-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.84rem; /* 20% larger than previous 0.7rem */
+    color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.choice:hover .key-indicator,
+.choice.selected .key-indicator {
+    color: #000; /* Black when hovered or selected */
 }
 
 .choice:hover {
-    background: radial-gradient(#14C2F9, #0A98F0);
-    border: 5px solid #0993EF;
-    box-shadow: 1px 4px 70px 7px #10639D;
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
 }
 
-#choice-picked {
-    font-size: 23px;
+.choice.selected {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
 }
 
-.noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.footer {
-    position: absolute;
+.game-content {
+    flex: 1;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    bottom: 0%;
-    left: 50%;
-    transform: translateX(-50%);
-
-    background-color: #171923;
-    width: 100vw;
-    height: 40px;
-
-    font-size: 21px;
+    align-items: center;
 }
 
-.footer footer a {
+.github-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: transparent;
+    color: var(--text-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.7rem;
+    border: 2px solid var(--text-primary);
     text-decoration: none;
-    color: #0993EF;
-
-    transition: .3s ease;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    z-index: 10;
 }
 
-.footer footer a:hover {
-    font-size: 30px;
-    color: #0993EF;
+.github-button:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
 }
 
-@media (max-width: 700px) {
-    img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .choices {
-        display: flex;
+@media (max-width: 768px) {
+    .game-container {
         flex-direction: column;
-        margin-top: 20px;
-        cursor: auto;
-
-        transform: translate(-50%, -45%);
+        gap: 3em;
     }
 
-    .choice {
-        display: flex;
-        padding: 5px;
-        margin: 10px;
+    .scoreboard {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
     }
 
-    #result {
-        font-size: 30px;
+    .player-section, .computer-section {
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        padding: 0.5rem;
     }
 
-    #choice-picked {
-        margin-top: 5px;
-        font-size: 25px;
+    .scoreboard-divider {
+        width: 1px;
+        height: 80%;
+        background-color: var(--border-color);
     }
 
-    .score-board {
-        height: 60px;
-    }
-}
-
-@media (max-height: 560px) {
-    img {
-        width: 60px;
-        height: 60px;
+    .score {
+        font-size: 2.5rem;
+        margin: 0 0.5rem;
     }
 
     .choices {
-        display: flex;
-        flex-direction: row;
-        cursor: auto;
-
-        transform: translate(-50%, -45%);
+        flex-direction: column;
+        gap: 1rem;
     }
 
     .choice {
-        display: flex;
-        padding: 5px;
-        margin: 10px;
+        width: 140px;
+        height: 140px;
+    }
+    .key-indicator {
+        display: none;
     }
 
     #result {
-        font-size: 20px;
+        font-size: 1.25rem;
+        max-width: 80%;
     }
 
-    #choice-picked {
-        margin-top: 5px;
-        font-size: 15px;
-    }
-
-    .score-board {
-        height: 50px;
-    }
-
-    .badge {
-        font-size: 15px;
+    .github-button {
+        display: none;
     }
 }

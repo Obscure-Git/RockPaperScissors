@@ -2,42 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPS-JS</title>
-    <link rel="icon" href="scissors.png">
-
+    <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <div class="score-board">
-        <div id="user-badge" class="badge">Player</div>
-        
-        <span id="user-score">0</span>:<span id="com-score">0</span>
-        
-        <div id="com-badge" class="badge">Computer</div>
-    </div>
-
-    <div class="result">
-        <span id="result">Click on your choice to start playing!</span>
-    </div>
-
-    <div class="choice-picked">
-        <span id="choice-picked">Computer picked: None</span>
-    </div>
-
-    <div class="choices">
-        <div class="choice rock">
-            <img src="rock.png" alt="Rock">
+    <div class="game-container">
+        <div class="scoreboard">
+            <div class="player-section">
+                <div class="badge">Player</div>
+                <div class="score" id="user-score">00</div>
+            </div>
+            <div class="scoreboard-divider"></div>
+            <div class="computer-section">
+                <div class="badge">Computer</div>
+                <div class="score" id="com-score">00</div>
+            </div>
         </div>
-        <div class="choice paper">
-            <img src="paper.png" alt="Paper">
-        </div>
-        <div class="choice scissors">
-            <img src="scissors.png" alt="Scissors">
+        <div class="game-content">
+            <div class="choices">
+                <div class="choice rock" data-choice="rock">
+                    Rock
+                    <span class="key-indicator">01</span>
+                </div>
+                <div class="choice paper" data-choice="paper">
+                    Paper
+                    <span class="key-indicator">02</span>
+                </div>
+                <div class="choice scissors" data-choice="scissors">
+                    Scissors
+                    <span class="key-indicator">03</span>
+                </div>
+            </div>
+            <div class="result">
+                <span id="result">Choose your move to start playing!</span>
+            </div>
         </div>
     </div>
+    <a href="https://github.com/kritishd8/RPS" target="_blank" class="github-button">View on GitHub</a>
     <script src="app.js"></script>
 </body>
 </html>
